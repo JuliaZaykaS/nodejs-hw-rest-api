@@ -4,7 +4,7 @@ const {
   listContacts,
   getContactById,
   removeContact,
-  // updateContact,
+  updateContact,
   addContact
 } = require('../../model/index')
 
@@ -31,7 +31,7 @@ router.get('/:contactId', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   const { name, email, phone } = req.body
-  console.log(req.body)
+  // console.log(req.body)
   if (!name || !email || !phone) {
     // res.statusCode = 400
     return res.status(400).json({ message: 'missing required name field', code: 400 })
@@ -68,7 +68,19 @@ router.delete('/:contactId', async (req, res, next) => {
 })
 
 router.patch('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
+  const { name, email, phone } = req.body
+  console.log(req.body)
+  const { contactId } = req.params
+  // console.log(contactId)
+  // if (!req.body) {
+  if (!name && !email && !phone) {
+    return res.status(400).json({ message: 'missing fields', code: 400 })
+  }
+  const updatedContact = await updateContact(Number(contactId), req.body)
+  if (!updatedContact) {
+    return res.status(404).json({ message: 'Not found', code: 404 })
+  }
+  return res.status(200).json({ contact: updatedContact, message: 'success', code: 200 })
 })
 
 module.exports = router

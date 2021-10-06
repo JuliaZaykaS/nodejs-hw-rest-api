@@ -70,7 +70,21 @@ const addContact = async (body) => {
   // return newContacts
 }
 
-const updateContact = async (contactId, body) => {}
+const updateContact = async (contactId, body) => {
+  // console.log(contactId)
+  // if (!body) return
+  // const { name, email, phone } = JSON.parse(body)
+  // const { name, email, phone } = body
+  const updatedContact = contacts.find(contact => contact.id === contactId)
+  // console.log(updatedContact)
+  // updatedContact.name = name
+  if (!updatedContact) return
+  updatedContact.name = body.name
+  updatedContact.email = body.email
+  updatedContact.phone = body.phone
+  // console.log(updatedContact)
+  return updatedContact
+}
 
 module.exports = {
   listContacts,
