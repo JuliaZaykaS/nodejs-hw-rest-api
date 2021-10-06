@@ -38,8 +38,8 @@ router.post('/', async (req, res, next) => {
   }
 
   const newContact = await addContact(req.body)
-  const contacts = await listContacts()
-  contacts.push(newContact)
+  // const contacts = await listContacts()
+  // contacts.push(newContact)
   // const newContacts = await addContact(req.body)
   // console.log(newContacts)
   // return res.status(201).json({ contacts: [...contacts, newContact], message: 'success', code: 201 })
@@ -48,13 +48,23 @@ router.post('/', async (req, res, next) => {
 })
 
 router.delete('/:contactId', async (req, res, next) => {
-  const { id } = req.params
-  const contact = await removeContact(id)
-  if (!contact) {
+  const { contactId } = req.params
+  // console.log(req.params)
+  // console.log(id)
+  const newContacts = await removeContact(Number(contactId))
+
+  console.log(newContacts)
+  if (!newContacts) {
+  // if (newContacts) {
     // res.statusCode = 404
     return res.status(404).json({ message: 'Not found', code: 404 })
   }
-  res.status(200).json({ message: 'contact deleted', code: 200 })
+  // const contacts = await listContacts()
+  // let contacts = await listContacts()
+  // console.log(contacts)
+  // contacts = [...newContacts]
+
+  return res.status(200).json({ message: 'contact deleted', code: 200 })
 })
 
 router.patch('/:contactId', async (req, res, next) => {

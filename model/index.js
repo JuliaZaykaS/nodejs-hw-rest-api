@@ -1,5 +1,9 @@
 // const fs = require('fs/promises')
-const contacts = require('./contacts.json')
+// const contacts = require('./contacts.json')
+
+// let allContacts = contacts
+
+let contacts = require('./contacts.json')
 // const path = require('path')
 // const contactsPath = path.resolve('./contacts.json')
 
@@ -25,8 +29,14 @@ const getContactById = async (contactId) => {
 }
 
 const removeContact = async (contactId) => {
-  const contact = contacts.find((contact) => contact.id === contactId)
-  return contact
+  const newContacts = contacts.filter((contact) => contact.id !== contactId)
+  // const newContacts = allContacts.filter((contact) => contact.id !== contactId)
+  // console.log(contact)
+  // allContacts = [...newContacts]
+
+  contacts = [...newContacts]
+  return newContacts
+  // return allContacts
 }
 
 const addContact = async (body) => {
@@ -52,6 +62,9 @@ const addContact = async (body) => {
   // } catch (error) {
   //   console.log(error)
   // }
+  //  const contacts = await listContacts()
+  // const newContacts = contacts.push(newContact)
+  contacts.push(newContact)
 
   return newContact
   // return newContacts
