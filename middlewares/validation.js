@@ -22,6 +22,8 @@ const checkContactValidation = (req, res, next) => {
       // .pattern(new RegExp(re))
       .pattern(/^(\+)?(\(\d{2,3}\) ?\d|\d)(([ -]?\d)|( ?\(\d{2,3}\) ?)){5,12}\d$/)
       .required(),
+
+    favorite: Joi.boolean()
   })
 
   const validationResult = schema.validate(req.body)

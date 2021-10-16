@@ -6,6 +6,7 @@ const {
   addContactController,
   removeContactController,
   updateContactController,
+  updateStatusContactController,
 } = require('../../controllers/contacts')
 const checkContactValidation = require('../../middlewares/validation')
 
@@ -18,5 +19,7 @@ router.post('/', checkContactValidation, addContactController)
 router.delete('/:contactId', removeContactController)
 
 router.patch('/:contactId', checkContactValidation, updateContactController)
+
+router.patch('/:contactId/favorite', updateStatusContactController)
 
 module.exports = router
