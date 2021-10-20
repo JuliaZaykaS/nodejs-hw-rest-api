@@ -1,4 +1,4 @@
-const { Contacts } = require('../../db/schema')
+const { Contact } = require('../../db/schema')
 
 const updateStatusContact = async (contactId, body) => {
   const { favorite } = body
@@ -6,7 +6,7 @@ const updateStatusContact = async (contactId, body) => {
   // console.log(body)
   // const contact = await Contacts.findById(contactId)
 
-  const updatedContact = await Contacts.findByIdAndUpdate(contactId, { $set: { favorite: favorite } })
+  const updatedContact = await Contact.findByIdAndUpdate(contactId, { $set: { favorite: favorite } }, { new: true })
   // const updatedContact = await Contacts.findByIdAndUpdate(contactId, { $set: { favorite } })
   return updatedContact
 
