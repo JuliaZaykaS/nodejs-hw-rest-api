@@ -10,7 +10,6 @@ class ValidationError extends Error {
 const checkContactValidation = (req, res, next) => {
   // const re = /^(\+)?(\(\d{2,3}\) ?\d|\d)(([ -]?\d)|( ?\(\d{2,3}\) ?)){5,12}\d$/
 
-
   const schema = Joi.object({
     // name: Joi.string().alphanum().min(3).max(30).allow('').required(),
     // name: Joi.string().alpha().min(3).max(30).allow('').required(),
