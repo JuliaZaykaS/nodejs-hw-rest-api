@@ -3,7 +3,6 @@ const { removeContact } = require('../../model/contacts')
 const removeContactController = async (req, res, next) => {
   const { contactId } = req.params
 
-  // const deletedContact = await removeContact(Number(contactId))
   const deletedContact = await removeContact(contactId)
 
   if (!deletedContact) {
