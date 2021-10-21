@@ -1,9 +1,8 @@
-let contacts = require('../../db/contacts.json')
+const { Contact } = require('../../db/schema')
 
 const removeContact = async (contactId) => {
-  const deletedContact = contacts.find(contact => contact.id === contactId)
-  const newContacts = contacts.filter((contact) => contact.id !== contactId)
-  contacts = [...newContacts]
+  const deletedContact = Contact.findByIdAndRemove(contactId)
+
   return deletedContact
 }
 

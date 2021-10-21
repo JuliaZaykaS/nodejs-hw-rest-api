@@ -1,5 +1,8 @@
-const contacts = require('../../db/contacts.json')
+const { Contact } = require('../../db/schema')
 
-const listContacts = async () => contacts
+const listContacts = async () => {
+  const contacts = await Contact.find({})
+  return contacts
+}
 
 module.exports = listContacts

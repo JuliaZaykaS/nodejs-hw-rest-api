@@ -1,7 +1,7 @@
-const contacts = require('../../db/contacts.json')
+const { Contact } = require('../../db/schema')
 
 const getContactById = async (contactId) => {
-  const contact = contacts.find((contact) => contact.id === contactId)
+  const contact = await Contact.findById(contactId)
   return contact
 }
 

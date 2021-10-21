@@ -1,15 +1,9 @@
-// let contacts = require('../contacts.json')
-const contacts = require('../../db/contacts.json')
+const { Contact } = require('../../db/schema')
 
 const updateContact = async (contactId, body) => {
   const { name, email, phone } = body
 
-  const updatedContact = contacts.find(contact => contact.id === contactId)
-
-  if (!updatedContact) return
-  updatedContact.name = name
-  updatedContact.email = email
-  updatedContact.phone = phone
+  const updatedContact = await Contact.findByIdAndUpdate(contactId, { $set: { name, email, phone } }, { new: true })
 
   return updatedContact
 }
