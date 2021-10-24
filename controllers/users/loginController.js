@@ -1,4 +1,4 @@
-const login = require('../../model/users')
+const { login } = require('../../model/users')
 
 const loginController = () => {
 

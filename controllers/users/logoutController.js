@@ -1,4 +1,4 @@
-const logout = require('../../model/users')
+const { logout } = require('../../model/users')
 
 const logoutController = () => {
 
