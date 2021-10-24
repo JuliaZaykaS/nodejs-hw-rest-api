@@ -1,4 +1,4 @@
-const { Contact } = require('../../db/schema')
+const { Contact } = require('../../db')
 
 const addContact = async (body) => {
   const { name, email, phone } = body

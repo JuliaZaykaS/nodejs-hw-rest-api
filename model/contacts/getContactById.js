@@ -1,4 +1,4 @@
-const { Contact } = require('../../db/schema')
+const { Contact } = require('../../db')
 
 const getContactById = async (contactId) => {
   const contact = await Contact.findById(contactId)

@@ -1,4 +1,4 @@
-const { Contact } = require('../../db/schema')
+const { Contact } = require('../../db')
 
 const updateStatusContact = async (contactId, body) => {
   const { favorite } = body
