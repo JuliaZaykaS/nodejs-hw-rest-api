@@ -25,7 +25,8 @@ const contactsSchema = new mongoose.Schema({
   owner: {
     // type: SchemaTypes.ObjectId,
     // type: Schema.Types.ObjectId,
-    type: mongoose.SchemaTypes.ObjectId,
+    // type: mongoose.SchemaTypes.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
   }
 }, { versionKey: false, timestamps: true })

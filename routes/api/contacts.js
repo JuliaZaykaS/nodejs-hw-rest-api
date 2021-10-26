@@ -10,7 +10,10 @@ const {
 } = require('../../controllers/contacts')
 const { checkContactValidation, checkContactFavoriteValidation } = require('../../middlewares/contactValidation')
 const { asyncWrapper } = require('../../helpers/asyncWrapper')
+const tokenValidation = require('../../middlewares/tokenValidation')
 
+router.use(tokenValidation)
+// router.use(asyncWrapper(tokenValidation))
 router.get('/', asyncWrapper(getContactsController))
 
 router.get('/:contactId', asyncWrapper(getContactByIdController))
