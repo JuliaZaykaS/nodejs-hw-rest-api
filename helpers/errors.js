@@ -11,10 +11,16 @@ class ValidationError extends ApiErrors {
     this.status = 400
   }
 }
-class AuthorizationError extends ApiErrors {
+class AuthenticationError extends ApiErrors {
   constructor(message) {
     super(message)
     this.status = 409
+  }
+}
+class AuthorizationError extends ApiErrors {
+  constructor(message) {
+    super(message)
+    this.status = 401
   }
 }
 
@@ -22,4 +28,5 @@ module.exports = {
   ApiErrors,
   ValidationError,
   AuthorizationError,
+  AuthenticationError,
 }
