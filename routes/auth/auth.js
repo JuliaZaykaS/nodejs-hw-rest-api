@@ -8,6 +8,7 @@ const {
   registrationController,
   loginController,
   logoutController,
+  currentController,
 } = require('../../controllers/users')
 
 router.post('/signup', checkUserValidation, asyncWrapper(registrationController))
@@ -15,5 +16,6 @@ router.post('/signup', checkUserValidation, asyncWrapper(registrationController)
 router.post('/login', checkUserValidation, asyncWrapper(loginController))
 
 router.post('/logout', tokenValidation, asyncWrapper(logoutController))
+router.post('/current', tokenValidation, asyncWrapper(currentController))
 
 module.exports = router

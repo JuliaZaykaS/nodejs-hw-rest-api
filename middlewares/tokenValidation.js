@@ -18,8 +18,8 @@ const tokenValidation = async (req, res, next) => {
     if (user.token === token) {
       req.user = user
       req.token = token
-      }
-      console.log(req.user);
+    }
+    console.log(req.user)
     next()
   } catch (error) {
     next(new AuthorizationError('Not authorized'))
