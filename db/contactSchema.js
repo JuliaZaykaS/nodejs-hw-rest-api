@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const mongoosePaginate = require('mongoose-paginate-v2')
 const { nameValidation, phoneValidation, emailValidation } = require('../helpers/validations-constants.js')
 
 const contactsSchema = new mongoose.Schema({
@@ -30,6 +31,8 @@ const contactsSchema = new mongoose.Schema({
     ref: 'user',
   }
 }, { versionKey: false, timestamps: true })
+
+contactsSchema.plugin(mongoosePaginate)
 
 const Contact = mongoose.model('contact', contactsSchema)
 
