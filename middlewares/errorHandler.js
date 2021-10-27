@@ -1,4 +1,4 @@
-const { ApiErrors } = require('../helpers/errors')
+const { ApiErrors } = require('../helpers')
 
 const errorHandler = (error, req, res, next) => {
   if (error instanceof ApiErrors) {

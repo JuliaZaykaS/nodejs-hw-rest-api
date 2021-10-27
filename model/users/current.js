@@ -1,5 +1,5 @@
 const { User } = require('../../db')
-const { AuthorizationError } = require('../../helpers/errors')
+const { AuthorizationError } = require('../../helpers')
 
 const current = async (user) => {
   if (!user) {

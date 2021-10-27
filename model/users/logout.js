@@ -1,10 +1,7 @@
-// const bcrypt = require('bcrypt')
-// const jwt = require('jsonwebtoken')
 const { User } = require('../../db')
-const { AuthorizationError } = require('../../helpers/errors')
+const { AuthorizationError } = require('../../helpers')
 
 const logout = async (user) => {
-//   const { user, token } = req
   if (!user) {
     throw new AuthorizationError('Not authorized')
   }

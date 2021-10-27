@@ -4,7 +4,6 @@ class ApiErrors extends Error {
     this.status = 400
   }
 }
-
 class ValidationError extends ApiErrors {
   constructor(message) {
     super(message)

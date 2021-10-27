@@ -8,12 +8,12 @@ const {
   updateContactController,
   updateStatusContactController,
 } = require('../../controllers/contacts')
-const { checkContactValidation, checkContactFavoriteValidation } = require('../../middlewares/contactValidation')
-const { asyncWrapper } = require('../../helpers/asyncWrapper')
-const tokenValidation = require('../../middlewares/tokenValidation')
+const { checkContactValidation, checkContactFavoriteValidation } = require('../../middlewares')
+const { asyncWrapper } = require('../../helpers')
+const { tokenValidation } = require('../../middlewares')
 
 router.use(tokenValidation)
-// router.use(asyncWrapper(tokenValidation))
+
 router.get('/', asyncWrapper(getContactsController))
 
 router.get('/:contactId', asyncWrapper(getContactByIdController))

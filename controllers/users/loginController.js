@@ -8,7 +8,6 @@ const loginController = async (req, res, next) => {
     token,
     user: {
       email: req.body.email,
-      //   email: user.email,
       subscription: 'starter'
     }
 

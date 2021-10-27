@@ -1,22 +1,19 @@
 const mongoose = require('mongoose')
 const mongoosePaginate = require('mongoose-paginate-v2')
-const { nameValidation, phoneValidation, emailValidation } = require('../helpers/validations-constants.js')
+const { nameValidation, phoneValidation, emailValidation } = require('../helpers')
 
 const contactsSchema = new mongoose.Schema({
   name: {
     type: String,
-    unique: true,
     required: [true, 'Set name for contact'],
     match: nameValidation,
   },
   email: {
     type: String,
-    unique: true,
     match: emailValidation,
   },
   phone: {
     type: String,
-    unique: true,
     match: phoneValidation,
   },
   favorite: {
@@ -24,9 +21,6 @@ const contactsSchema = new mongoose.Schema({
     default: false,
   },
   owner: {
-    // type: SchemaTypes.ObjectId,
-    // type: Schema.Types.ObjectId,
-    // type: mongoose.SchemaTypes.ObjectId,
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
   }

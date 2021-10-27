@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const { checkUserValidation } = require('../../middlewares/userValidation')
-const { asyncWrapper } = require('../../helpers/asyncWrapper')
-const tokenValidation = require('../../middlewares/tokenValidation')
+const { checkUserValidation } = require('../../middlewares')
+const { asyncWrapper } = require('../../helpers')
+const { tokenValidation } = require('../../middlewares')
 
 const {
   registrationController,

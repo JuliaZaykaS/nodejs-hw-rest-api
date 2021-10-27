@@ -1,6 +1,6 @@
 const Joi = require('joi')
-const { emailValidation, passwordValidation } = require('../helpers/validations-constants')
-const { ValidationError } = require('../helpers/errors')
+const { emailValidation, passwordValidation } = require('../helpers')
+const { ValidationError } = require('../helpers')
 
 const checkUserValidation = (req, res, next) => {
   const schema = Joi.object({

@@ -3,10 +3,10 @@ const { subscription } = require('../../model/users')
 const subscriptionController = async (req, res, next) => {
   if (!req.body.subscription) {
     return res.status(400).json({ message: 'missing field subscription' })
-    }
-    // if(req.body.subscription)
-    // console.log(req.user)
+  }
+
   const updatedUser = await subscription(req.user, req.body)
+
   if (!updatedUser) {
     return res.status(404).json({ message: 'Not found', code: 404 })
   }

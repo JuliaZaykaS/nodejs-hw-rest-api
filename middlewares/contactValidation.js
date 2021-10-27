@@ -1,12 +1,6 @@
 const Joi = require('joi')
-const { nameValidation, phoneValidation, emailValidation } = require('../helpers/validations-constants')
-const { ValidationError } = require('../helpers/errors')
-// class ValidationError extends Error {
-//   constructor(message) {
-//     super(message)
-//     this.status = 400
-//   }
-// }
+const { nameValidation, phoneValidation, emailValidation } = require('../helpers')
+const { ValidationError } = require('../helpers')
 
 const checkContactValidation = (req, res, next) => {
   const schema = Joi.object({

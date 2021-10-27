@@ -2,7 +2,7 @@ const { updateStatusContact } = require('../../model/contacts')
 
 const updateStatusContactController = async (req, res, next) => {
   const { contactId } = req.params
-   const { _id: owner } = req.user
+  const { _id: owner } = req.user
 
   if (!req.body.favorite) {
     return res.status(400).json({ message: 'missing field favorite' })
