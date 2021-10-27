@@ -1,7 +1,7 @@
 const { Contact } = require('../../db')
 
-const getContactById = async (contactId) => {
-  const contact = await Contact.findById(contactId)
+const getContactById = async (contactId, owner) => {
+  const contact = await Contact.findOne({ _id: contactId, owner })
   return contact
 }
 
