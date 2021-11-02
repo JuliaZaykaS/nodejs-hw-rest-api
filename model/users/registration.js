@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt')
+require('dotenv').config()
 const { User } = require('../../db')
 const { AuthenticationError } = require('../../helpers')
 
@@ -14,7 +15,7 @@ const registration = async (body) => {
     throw new AuthenticationError('Email in use')
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10)
+  const hashedPassword = await bcrypt.hash(password, Number(process.env.SALT))
 
   const user = new User({ email, password: hashedPassword })
   await user.save()

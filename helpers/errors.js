@@ -22,10 +22,17 @@ class AuthorizationError extends ApiErrors {
     this.status = 401
   }
 }
+class LimiterError extends ApiErrors {
+  constructor(message) {
+    super(message)
+    this.status = 429
+  }
+}
 
 module.exports = {
   ApiErrors,
   ValidationError,
   AuthorizationError,
   AuthenticationError,
+  LimiterError,
 }
