@@ -1,7 +1,12 @@
-const { Contact } = require('../../db/schema')
+const { Contact } = require('../../db')
 
-const listContacts = async () => {
-  const contacts = await Contact.find({})
+const listContacts = async (owner, page, limit, favorite) => {
+  if (favorite === undefined) {
+    const contacts = await Contact.paginate({ owner }, { page, limit })
+    return contacts
+  }
+  const contacts = await Contact.paginate({ owner, favorite }, { page, limit })
+
   return contacts
 }
 

@@ -1,7 +1,7 @@
-const { Contact } = require('../../db/schema')
+const { Contact } = require('../../db')
 
-const removeContact = async (contactId) => {
-  const deletedContact = Contact.findByIdAndRemove(contactId)
+const removeContact = async (contactId, owner) => {
+  const deletedContact = Contact.findOneAndRemove({ _id: contactId, owner })
 
   return deletedContact
 }
