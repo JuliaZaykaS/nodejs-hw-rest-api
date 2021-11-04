@@ -4,6 +4,7 @@ const logout = require('./logout')
 const current = require('./current')
 const subscription = require('./subscription')
 const avatar = require('./avatar')
+// const upd
 
 module.exports = {
   registration,
