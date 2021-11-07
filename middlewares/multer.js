@@ -8,8 +8,9 @@ const multerConfig = multer.diskStorage({
     cb(null, tempDir)
   },
   filename: (req, file, cb) => {
-    // const [filename, extension]
+    // const [filename, extension] = file.originalname.split('.')
     cb(null, file.originalname)
+    // cb(null, ` ${file.originalname}.${extension}`)
   },
   limits: {
     fileSize: 1048576,
