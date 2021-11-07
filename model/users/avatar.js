@@ -113,7 +113,8 @@ const avatar = async (user, file) => {
     // console.log(newTempPath);
     // console.log(updatedFile)
     // console.log(1)
-    await updatedFile.resize(250, 250).write(tempPath)
+    // await updatedFile.resize(250, 250).write(tempPath)
+    await updatedFile.resize(250, 250).writeAsync(tempPath)
     // const a = await updatedFile.resize(250, 250).write(tempPath)
     // await updatedFile.resize(250, 250).write(newTempPath)
     // console.log(a)
