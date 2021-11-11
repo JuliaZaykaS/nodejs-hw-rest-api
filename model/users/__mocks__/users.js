@@ -6,7 +6,7 @@ const users = [
 ]
 
 const updateAvatar = {
-  avatar: '/avatars/1/cat'
+  avatarURL: '/avatars/1/cat'
 }
 
 module.exports = { users, updateAvatar }

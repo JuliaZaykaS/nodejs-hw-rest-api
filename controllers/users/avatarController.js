@@ -12,7 +12,16 @@ const avatarController = async (req, res, next) => {
   //   updatedUser
 
   // })
-  console.log(res.user);
+  // const a = {
+  //   avatarURL: updatedUser.avatarURL
+  // }
+  // console.log(res.avatarURL)
+  // return res.status(200).json({
+  //   // avatarURL: updatedUser.avatarURL
+  //   a
+
+  // })
+
   return res.status(200).json({
     avatarURL: updatedUser.avatarURL
 
