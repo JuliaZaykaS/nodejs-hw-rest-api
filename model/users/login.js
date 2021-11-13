@@ -3,11 +3,6 @@ const jwt = require('jsonwebtoken')
 const { AuthorizationError } = require('../../helpers')
 const { User } = require('../../db/')
 
-// const path = require('path')
-// const fs = require('fs').promises
-
-// const avatarDir = path.join(__dirname, '../../', '/public/avatars')
-
 const login = async (body) => {
   const { email, password } = body
 
@@ -21,10 +16,6 @@ const login = async (body) => {
     throw new AuthorizationError('Email or password is wrong')
   }
 
-  // const userDir = path.join(avatarDir, user._id)
-  // console.log(userDir)
-  // await fs.mkdir(userDir)
-
   const token = jwt.sign({
     _id: user._id,
     createdAt: user.createdAt,
@@ -33,10 +24,5 @@ const login = async (body) => {
   await User.findByIdAndUpdate(user._id, { $set: { token } })
   return token
 }
-
-// login({
-//   email: 'dog@mail.com',
-//   password: '123456'
-// })
 
 module.exports = login
