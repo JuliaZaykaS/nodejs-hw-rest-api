@@ -19,6 +19,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  avatarURL: String,
+
 }, { versionKey: false, timestamps: true })
 
 const User = mongoose.model('user', userSchema)

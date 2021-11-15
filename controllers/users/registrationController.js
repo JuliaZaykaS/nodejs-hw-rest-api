@@ -6,7 +6,7 @@ const registrationController = async(req, res, next) => {
   res.status(201).json({
     user: {
       email: newUser.email,
-      subscription: 'starter'
+      subscription: 'starter',
     }
   })
 }

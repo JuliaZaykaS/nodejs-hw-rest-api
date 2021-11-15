@@ -3,13 +3,13 @@ const { AuthorizationError } = require('../helpers')
 const { User } = require('../db')
 
 const tokenValidation = async (req, res, next) => {
-  const [, token] = req.headers.authorization.split(' ')
-
-  if (!token) {
-    throw new AuthorizationError('Not authorized')
-  }
-
   try {
+    const [, token] = req.headers.authorization.split(' ')
+
+    if (!token) {
+      next(new AuthorizationError('Not authorized'))
+    }
+
     const userFromToken = jwt.decode(token, process.env.JWT_SECRET)
 
     const user = await User.findById(userFromToken._id)
