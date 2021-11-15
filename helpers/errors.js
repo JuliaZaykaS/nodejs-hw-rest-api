@@ -28,6 +28,12 @@ class LimiterError extends ApiErrors {
     this.status = 429
   }
 }
+class VerificationError extends ApiErrors {
+  constructor(message) {
+    super(message)
+    this.status = 404
+  }
+}
 
 module.exports = {
   ApiErrors,
@@ -35,4 +41,5 @@ module.exports = {
   AuthorizationError,
   AuthenticationError,
   LimiterError,
+  VerificationError,
 }

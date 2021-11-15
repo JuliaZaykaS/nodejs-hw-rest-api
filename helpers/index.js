@@ -4,6 +4,7 @@ const {
   AuthorizationError,
   AuthenticationError,
   LimiterError,
+  VerificationError,
 } = require('./errors')
 const { asyncWrapper } = require('./asyncWrapper')
 const {
@@ -20,6 +21,7 @@ module.exports = {
   AuthorizationError,
   AuthenticationError,
   LimiterError,
+  VerificationError,
   asyncWrapper,
   apiLimiter,
   createAccountLimiter,
@@ -27,4 +29,5 @@ module.exports = {
   phoneValidation,
   emailValidation,
   passwordValidation,
+
 }

@@ -4,6 +4,7 @@ const logoutController = require('./logoutController')
 const currentController = require('./currentController')
 const subscriptionController = require('./subscriptionController')
 const avatarController = require('./avatarController')
+const verificationController=require('./verificationController')
 
 module.exports = {
   registrationController,
@@ -12,4 +13,5 @@ module.exports = {
   currentController,
   subscriptionController,
   avatarController,
+  verificationController,
 }
