@@ -6,7 +6,7 @@ const { User } = require('../../db/')
 const login = async (body) => {
   const { email, password } = body
 
-  const user = await User.findOne({ email })
+  const user = await User.findOne({ email, verify: true })
 
   if (!user) {
     throw new AuthorizationError('Email or password is wrong')
