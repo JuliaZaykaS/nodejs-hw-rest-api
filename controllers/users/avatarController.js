@@ -1,9 +1,10 @@
 const { avatar } = require('../../model/users')
+const { HTTPCodes } = require('../../helpers')
 
 const avatarController = async (req, res, next) => {
   const updatedUser = await avatar(req.user, req.file)
 
-  return res.status(200).json({
+  return res.status(HTTPCodes.OK).json({
     avatarURL: updatedUser.avatarURL,
   })
 }

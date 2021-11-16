@@ -15,6 +15,7 @@ const {
 } = require('./validations-constants')
 const { apiLimiter, createAccountLimiter } = require('./limiter')
 const verificationMessage = require('./verificationMessage')
+const HTTPCodes = require('./HTTP-codes')
 
 module.exports = {
   ApiErrors,
@@ -31,5 +32,6 @@ module.exports = {
   emailValidation,
   passwordValidation,
   verificationMessage,
+  HTTPCodes,
 
 }
