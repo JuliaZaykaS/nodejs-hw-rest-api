@@ -27,7 +27,6 @@ const userSchema = new mongoose.Schema({
   verificationToken: {
     type: String,
     required: [true, 'verification Token is required'],
-    // required: true,
   },
 
 }, { versionKey: false, timestamps: true })

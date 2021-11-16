@@ -4,7 +4,7 @@ const {
 } = require('./contactValidation')
 const { errorHandler } = require('./errorHandler')
 const tokenValidation = require('./tokenValidation')
-const { checkUserValidation } = require('./userValidation')
+const { checkUserValidation, checkUserEmailValidation } = require('./userValidation')
 const { uploadAvatar } = require('./multer')
 
 module.exports = {
@@ -13,5 +13,6 @@ module.exports = {
   errorHandler,
   tokenValidation,
   checkUserValidation,
+  checkUserEmailValidation,
   uploadAvatar,
 }

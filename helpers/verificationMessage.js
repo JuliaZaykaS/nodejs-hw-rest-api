@@ -22,7 +22,6 @@ const verificationMessage = async(email, verificationToken) => {
     html: `Please, <a href="http://localhost:5555/users//verify/${verificationToken}">confirm</a> your email address`
   }
 
-  //   await transporter.sendMail(emailForSend)
   transporter.sendMail(emailForSend)
 }
 

@@ -1,15 +1,11 @@
 const { verification } = require('../../model/users')
 const { HTTPCodes } = require('../../helpers')
-// const { VerificationError } = require('../../helpers')
 
 const verificationController = async (req, res, next) => {
   const { verificationToken } = req.params
-  //   const { verificationToken } = req.body
-  console.log(verificationToken)
-  //   if (!await verification(verificationToken)) {
-  //     throw new VerificationError('Not found')
-  //   }
+
   await verification(verificationToken)
+
   return res.status(HTTPCodes.OK).json({ message: 'Verification successful' })
 }
 

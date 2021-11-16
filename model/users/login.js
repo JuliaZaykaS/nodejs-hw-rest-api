@@ -1,15 +1,19 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { AuthorizationError } = require('../../helpers')
+const { AuthorizationError, VerificationError } = require('../../helpers')
 const { User } = require('../../db/')
 
 const login = async (body) => {
   const { email, password } = body
 
-  const user = await User.findOne({ email, verify: true })
+  const user = await User.findOne({ email })
 
   if (!user) {
     throw new AuthorizationError('Email or password is wrong')
+  }
+
+  if (!user.verify) {
+    throw new VerificationError('Your email is not verificated. Please, watch through your mail.')
   }
 
   if (!await bcrypt.compare(password, user.password)) {

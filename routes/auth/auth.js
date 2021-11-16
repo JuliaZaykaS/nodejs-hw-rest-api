@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { checkUserValidation } = require('../../middlewares')
 const { asyncWrapper } = require('../../helpers')
-const { tokenValidation, uploadAvatar } = require('../../middlewares')
+const { tokenValidation, uploadAvatar, checkUserEmailValidation } = require('../../middlewares')
 
 const {
   registrationController,
@@ -29,6 +29,6 @@ router.post('/current', tokenValidation, asyncWrapper(currentController))
 
 router.get('/verify/:verificationToken', asyncWrapper(verificationController))
 
-router.post('/verify', asyncWrapper(verifyController))
+router.post('/verify', checkUserEmailValidation, asyncWrapper(verifyController))
 
 module.exports = router

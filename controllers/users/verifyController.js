@@ -2,9 +2,8 @@ const { verify } = require('../../model/users')
 const { verificationMessage, HTTPCodes } = require('../../helpers')
 
 const verifyController = async (req, res, next) => {
-//   console.log(req.body)
   const { email } = req.body
-//   console.log(email)
+
   if (!email) {
     return res.status(HTTPCodes.BadRequest).json({ message: 'missing required field email' })
   }
