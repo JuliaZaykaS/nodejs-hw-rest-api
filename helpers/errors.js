@@ -1,5 +1,6 @@
-const { HTTPCodes } = require('./index')
+const HTTPCodes = require('./HTTP-codes')
 
+// console.log(HTTPCodes)
 class ApiErrors extends Error {
   constructor(message) {
     super(message)

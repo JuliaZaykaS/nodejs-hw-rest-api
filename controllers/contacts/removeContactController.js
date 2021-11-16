@@ -1,4 +1,5 @@
 const { removeContact } = require('../../model/contacts')
+const { HTTPCodes } = require('../../helpers')
 
 const removeContactController = async (req, res, next) => {
   const { contactId } = req.params
@@ -7,10 +8,10 @@ const removeContactController = async (req, res, next) => {
   const deletedContact = await removeContact(contactId, owner)
 
   if (!deletedContact) {
-    return res.status(404).json({ message: 'Not found', code: 404 })
+    return res.status(HTTPCodes.NotFound).json({ message: 'Not found', code: HTTPCodes.NotFound })
   }
 
-  return res.status(200).json({ message: 'contact deleted', code: 200 })
+  return res.status(HTTPCodes.OK).json({ message: 'contact deleted', code: HTTPCodes.OK })
 }
 
 module.exports = removeContactController

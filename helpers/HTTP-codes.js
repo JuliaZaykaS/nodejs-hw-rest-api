@@ -12,4 +12,3 @@ const HTTPCodes = {
 }
 
 module.exports = HTTPCodes
-const { HTTPCodes } = require('../../helpers')

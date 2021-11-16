@@ -1,4 +1,5 @@
 const { getContactById } = require('../../model/contacts')
+const { HTTPCodes } = require('../../helpers')
 
 const getContactByIdController = async (req, res, next) => {
   const id = req.params.contactId
@@ -6,9 +7,9 @@ const getContactByIdController = async (req, res, next) => {
 
   const contact = await getContactById(id, owner)
   if (!contact) {
-    return res.status(404).json({ message: 'Not found', code: 404 })
+    return res.status(HTTPCodes.NotFound).json({ message: 'Not found', code: HTTPCodes.NotFound })
   }
-  return res.status(200).json({ contact: contact, message: 'success', code: 200 })
+  return res.status(HTTPCodes.OK).json({ contact: contact, message: 'success', code: HTTPCodes.OK })
 }
 
 module.exports = getContactByIdController

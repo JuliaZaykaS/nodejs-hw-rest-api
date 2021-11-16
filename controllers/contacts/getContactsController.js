@@ -1,4 +1,5 @@
 const { listContacts } = require('../../model/contacts')
+const { HTTPCodes } = require('../../helpers')
 
 const getContactsController = async (req, res, next) => {
   const { _id: owner } = req.user
@@ -9,8 +10,8 @@ const getContactsController = async (req, res, next) => {
 
   const contacts = await listContacts(owner, page, limit, favorite)
 
-  res.status(200).json(
-    { contacts: contacts, message: 'success', code: 200 }
+  res.status(HTTPCodes.OK).json(
+    { contacts: contacts, message: 'success', code: HTTPCodes.OK }
   )
 }
 
