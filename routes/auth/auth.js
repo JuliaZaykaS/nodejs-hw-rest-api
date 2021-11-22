@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { checkUserValidation } = require('../../middlewares')
 const { asyncWrapper } = require('../../helpers')
-const { tokenValidation, uploadAvatar } = require('../../middlewares')
+const { tokenValidation, uploadAvatar, checkUserEmailValidation } = require('../../middlewares')
 
 const {
   registrationController,
@@ -11,6 +11,8 @@ const {
   currentController,
   subscriptionController,
   avatarController,
+  verificationController,
+  verifyController,
 } = require('../../controllers/users')
 
 router.post('/signup', checkUserValidation, asyncWrapper(registrationController))
@@ -24,5 +26,9 @@ router.patch('/avatars', tokenValidation, uploadAvatar.single('avatar'), asyncWr
 router.post('/logout', tokenValidation, asyncWrapper(logoutController))
 
 router.post('/current', tokenValidation, asyncWrapper(currentController))
+
+router.get('/verify/:verificationToken', asyncWrapper(verificationController))
+
+router.post('/verify', checkUserEmailValidation, asyncWrapper(verifyController))
 
 module.exports = router

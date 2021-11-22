@@ -1,4 +1,5 @@
 const { updateContact } = require('../../model/contacts')
+const { HTTPCodes } = require('../../helpers')
 
 const updateContactController = async (req, res, next) => {
   const { name, email, phone } = req.body
@@ -7,16 +8,16 @@ const updateContactController = async (req, res, next) => {
   const { contactId } = req.params
 
   if (!name && !email && !phone) {
-    return res.status(400).json({ message: 'missing fields', code: 400 })
+    return res.status(HTTPCodes.BadRequest).json({ message: 'missing fields', code: HTTPCodes.BadRequest })
   }
 
   const updatedContact = await updateContact(contactId, req.body, owner)
 
   if (!updatedContact) {
-    return res.status(404).json({ message: 'Not found', code: 404 })
+    return res.status(HTTPCodes.NotFound).json({ message: 'Not found', code: HTTPCodes.NotFound })
   }
 
-  return res.status(200).json({ contact: updatedContact, message: 'success', code: 200 })
+  return res.status(HTTPCodes.OK).json({ contact: updatedContact, message: 'success', code: HTTPCodes.OK })
 }
 
 module.exports = updateContactController

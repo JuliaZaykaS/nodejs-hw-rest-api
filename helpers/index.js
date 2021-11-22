@@ -4,6 +4,7 @@ const {
   AuthorizationError,
   AuthenticationError,
   LimiterError,
+  VerificationError,
 } = require('./errors')
 const { asyncWrapper } = require('./asyncWrapper')
 const {
@@ -13,6 +14,8 @@ const {
   passwordValidation,
 } = require('./validations-constants')
 const { apiLimiter, createAccountLimiter } = require('./limiter')
+const verificationMessage = require('./verificationMessage')
+const HTTPCodes = require('./HTTP-codes')
 
 module.exports = {
   ApiErrors,
@@ -20,6 +23,7 @@ module.exports = {
   AuthorizationError,
   AuthenticationError,
   LimiterError,
+  VerificationError,
   asyncWrapper,
   apiLimiter,
   createAccountLimiter,
@@ -27,4 +31,7 @@ module.exports = {
   phoneValidation,
   emailValidation,
   passwordValidation,
+  verificationMessage,
+  HTTPCodes,
+
 }
