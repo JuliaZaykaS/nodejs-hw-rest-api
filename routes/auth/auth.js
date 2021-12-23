@@ -25,7 +25,7 @@ router.patch('/avatars', tokenValidation, uploadAvatar.single('avatar'), asyncWr
 
 router.post('/logout', tokenValidation, asyncWrapper(logoutController))
 
-router.post('/current', tokenValidation, asyncWrapper(currentController))
+router.get('/current', tokenValidation, asyncWrapper(currentController))
 
 router.get('/verify/:verificationToken', asyncWrapper(verificationController))
 

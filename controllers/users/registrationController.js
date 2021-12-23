@@ -6,6 +6,7 @@ const registrationController = async(req, res, next) => {
 
   res.status(HTTPCodes.Created).json({
     user: {
+      name: newUser.name,
       email: newUser.email,
       subscription: 'starter',
     }

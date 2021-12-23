@@ -4,6 +4,8 @@ const { ValidationError } = require('../helpers')
 
 const checkUserValidation = (req, res, next) => {
   const schema = Joi.object({
+    name: Joi.string(),
+    // .required(),
     email: Joi.string()
       .email(emailValidation)
       .required(),

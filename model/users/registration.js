@@ -7,6 +7,7 @@ const { AuthenticationError, verificationMessage } = require('../../helpers')
 
 const registration = async (body) => {
   const {
+    name,
     email,
     password
   } = body
@@ -22,7 +23,7 @@ const registration = async (body) => {
 
   const verificationToken = uuidv4()
 
-  const user = new User({ email, password: hashedPassword, avatarURL, verificationToken })
+  const user = new User({ name, email, password: hashedPassword, avatarURL, verificationToken })
   await user.save()
 
   await verificationMessage(email, verificationToken)
