@@ -284,7 +284,7 @@
           {
             "in": "query",
             "required": true,
-            "type": "object",
+            "type": "string",
             "description": "verificationToken",
             "name": "verificationToken"
           }
@@ -309,22 +309,28 @@
       }
     },
 
-    "/api/transactions/{page&limit}": {
+    "/api/contacts/{page&limit&favorite}": {
       "get": {
-        "tags": ["Transactions"],
-        "summary": "User Transactions",
+        "tags": ["Contacts"],
+        "summary": "User Contacts",
         "parameters": [
           {
             "in": "path",
             "name": "page",
-            "description": "Page from Totla Transactions",
+            "description": "Page from Total Contacts",
             "required": true,
             "type": "string"
           },
           {
             "in": "path",
             "name": "limit",
-            "description": "Limit Transactions on page",
+            "description": "Limit Contacts on page",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "favorite",
+            "description": "Favorite Contacts",
             "type": "string"
           }
         ],
@@ -336,7 +342,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TransactionsResponse"
+                  "$ref": "#/components/schemas/ContactsResponse"
                 }
               }
             }
@@ -355,17 +361,17 @@
 
     "/api/contacts": {
       "post": {
-        "tags": ["Transactions"],
-        "summary": "Transactions add",
+        "tags": ["Contacts"],
+        "summary": "Contacts add",
         "parameters": [],
         "security": [{ "Bearer": [] }],
         "requestBody": {
-          "description": "Transactions's add",
+          "description": "Contact add",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddTransactionsRequest"
+                "$ref": "#/components/schemas/AddContactRequest"
               }
             }
           }
@@ -376,13 +382,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddTransactionsResponse"
+                  "$ref": "#/components/schemas/AddContactsResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "Bad request (no token provided)",
+            "description": "Bad request (missing required field)",
             "content": {}
           },
           "401": {
@@ -397,20 +403,27 @@
       }
     },
 
-    "/api/transactions/categories": {
+    "/api/contacts/{contactId}": {
       "get": {
-        "tags": ["Transactions"],
-        "summary": "Transactions categories",
-        "parameters": [],
+        "tags": ["Contacts"],
+        "summary": "Get contact by id",
         "security": [{ "Bearer": [] }],
-
+        "parameters": [
+          {
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "contact id",
+            "name": "contactId"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful operation",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TransactionsCategoriesResponse"
+                  "$ref": "#/components/schemas/ContactByIdResponse"
                 }
               }
             }
@@ -424,24 +437,70 @@
             "content": {}
           },
           "404": {
-            "description": "Invalid user / Invalid session",
+            "description": "Invalid user / Invalid session / Invalid id",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Contacts"],
+        "summary": "Delete contact by id",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "contact id",
+            "name": "contactId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation, contact deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactDeleteByIdResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (no token provided)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized (invalid access token)",
+            "content": {}
+          },
+          "404": {
+            "description": "Invalid user / Invalid session / Invalid id",
             "content": {}
           }
         }
       },
 
-      "post": {
-        "tags": ["Transactions"],
-        "summary": "Transactions categories add",
-        "parameters": [],
+      "patch": {
+        "tags": ["Contacts"],
+        "summary": "Update contact by id",
+        "parameters": [
+          {
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "contact id",
+            "name": "contactId"
+          }
+        ],
         "security": [{ "Bearer": [] }],
         "requestBody": {
-          "description": "Transactions's categories add",
+          "description": "Update contact by id",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddTransactionsCategoriesRequest"
+                "$ref": "#/components/schemas/UpdateContactRequest"
               }
             }
           }
@@ -452,13 +511,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddTransactionsCategoriesResponse"
+                  "$ref": "#/components/schemas/UpdateContactResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "Bad request (no token provided)",
+            "description": "Bad request (missing fields)",
             "content": {}
           },
           "401": {
@@ -466,33 +525,37 @@
             "content": {}
           },
           "404": {
-            "description": "Invalid user / Invalid session",
+            "description": "Invalid user / Invalid session / Invalid id",
             "content": {}
           }
         }
       }
     },
 
-    "/api/transactions/statistic/{month&year}": {
-      "get": {
-        "tags": ["Transactions"],
-        "summary": "Transactions statistic",
+    "/api/contacts/{contactId}/favorite": {
+      "patch": {
+        "tags": ["Contacts"],
+        "summary": "Update contact status",
         "parameters": [
           {
-            "in": "path",
-            "name": "month",
-            "description": "Month Transactions",
+            "in": "query",
             "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "year",
-            "description": "Year Transactions",
-            "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "contact id",
+            "name": "contactId"
           }
         ],
+        "requestBody": {
+          "description": "Update contact status by id",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateContactStatusRequest"
+              }
+            }
+          }
+        },
         "security": [{ "Bearer": [] }],
 
         "responses": {
@@ -501,13 +564,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TransactionsStatisticResponse"
+                  "$ref": "#/components/schemas/UpdateContactStatusResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "Bad request (no token provided)",
+            "description": "Bad request (missing field favorite)",
             "content": {}
           },
           "401": {
@@ -515,7 +578,7 @@
             "content": {}
           },
           "404": {
-            "description": "Invalid user / Invalid session",
+            "description": "Invalid user / Invalid session / Invalid id",
             "content": {}
           }
         }
@@ -705,82 +768,57 @@
         }
       },
 
-      "TransactionsResponse": {
+      "ContactsResponse": {
         "type": "object",
         "properties": {
-          "userTransactions": {
+          "contacts": {
             "type": "object",
             "properties": {
-              "totalTransactions": {
+              "totalDocs": {
                 "type": "integer",
-                "description": "Transaction total",
+                "description": "Contacts total",
                 "example": "123"
               },
               "totalPages": {
                 "type": "integer",
-                "description": "Transaction total",
+                "description": "Pages total",
                 "example": "123"
               },
-              "transactions": {
+              "docs": {
                 "type": "array",
-                "description": "User's Transactions list",
+                "description": "User's contacts list",
                 "items": {
                   "type": "object",
                   "properties": {
                     "_id": {
                       "type": "string",
-                      "description": "Transaction id",
-                      "example": "qwerty123"
+                      "description": "Contact id",
+                      "example": "6179a6a51d70c09105c7fbdb"
                     },
-                    "transactionType": {
+                    "name": {
+                      "type": "string",
+                      "description": "Contact name",
+                      "example": "Test Test"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "Contact email",
+                      "format": "email"
+                    },
+                    "phone": {
+                      "type": "string",
+                      "description": "Contact phone",
+                      "example": "+7773555-0000"
+                    },
+                    "favorite": {
                       "type": "boolean",
-                      "description": "Transaction type",
+                      "description": "Favorite Contact",
                       "example": "true/false"
-                    },
-                    "sum": {
-                      "type": "integer",
-                      "description": "Transaction sum",
-                      "example": "123"
-                    },
-                    "date": {
-                      "type": "date",
-                      "description": "Transaction date",
-                      "example": "31.12.2021"
-                    },
-                    "trDay": {
-                      "type": "integer",
-                      "description": "Transaction day",
-                      "example": "31"
-                    },
-                    "trMonth": {
-                      "type": "integer",
-                      "description": "Transaction month",
-                      "example": "12"
-                    },
-                    "trYear": {
-                      "type": "integer",
-                      "description": "Transaction year",
-                      "example": "2021"
                     },
                     "owner": {
                       "type": "string",
-                      "description": "Transaction owner",
-                      "example": "qwerty123"
-                    },
-                    "category": {
-                      "type": "string",
-                      "description": "Transaction category",
-                      "example": "donation"
-                    },
-                    "comment": {
-                      "type": "string",
-                      "description": "Transaction comment",
-                      "example": "git commit"
-                    },
-                    "balance": {
-                      "type": "integer",
-                      "description": "User's balance",
-                      "example": "9999999"
+                      "description": "Contact owner",
+                      "example": "6179a6a51d70c09105c7fbdb"
                     }
                   }
                 }
@@ -790,105 +828,228 @@
         }
       },
 
-      "AddTransactionsRequest": {
-        "required": ["transactionType", "sum", "date"],
+      "AddContactRequest": {
+        "required": ["name", "email", "phone"],
         "type": "object",
         "properties": {
-          "transactionType": {
-            "type": "boolean",
-            "description": "Transaction type",
-            "example": "true / false"
-          },
-          "sum": {
-            "type": "integer",
-            "description": "Transaction sum",
-            "example": "123"
-          },
-          "date": {
+          "name": {
             "type": "string",
-            "description": "Transaction date",
-            "example": "31.12.2021"
+            "description": "Contact name",
+            "example": "Test Test"
           },
-          "category": {
+          "email": {
             "type": "string",
-            "description": "Transaction category",
-            "example": "any"
+            "description": "Contact email",
+            "format": "email"
           },
-          "comment": {
+          "phone": {
             "type": "string",
-            "description": "Transaction comment",
-            "example": "git comit"
+            "description": "Contact phone",
+            "example": "+7773555-0000"
           }
         }
       },
 
-      "AddTransactionsResponse": {
+      "AddContactsResponse": {
         "type": "object",
         "properties": {
-          "data": {
+          "contacts": {
             "type": "object",
             "properties": {
-              "transaction": {
-                "type": "object",
-                "properties": {
-                  "_id": {
-                    "type": "string",
-                    "description": "Transaction id",
-                    "example": "qwerty123"
-                  },
-                  "transactionType": {
-                    "type": "boolean",
-                    "description": "Transaction type",
-                    "example": "true/false"
-                  },
-                  "sum": {
-                    "type": "integer",
-                    "description": "Transaction sum",
-                    "example": "123"
-                  },
-                  "date": {
-                    "type": "date",
-                    "description": "Transaction date",
-                    "example": "31.12.2021"
-                  },
-                  "trDay": {
-                    "type": "integer",
-                    "description": "Transaction day",
-                    "example": "31"
-                  },
-                  "trMonth": {
-                    "type": "integer",
-                    "description": "Transaction month",
-                    "example": "12"
-                  },
-                  "trYear": {
-                    "type": "integer",
-                    "description": "Transaction year",
-                    "example": "2021"
-                  },
-                  "owner": {
-                    "type": "string",
-                    "description": "Transaction owner",
-                    "example": "qwerty123"
-                  },
-                  "category": {
-                    "type": "string",
-                    "description": "Transaction category",
-                    "example": "any"
-                  },
-                  "comment": {
-                    "type": "string",
-                    "description": "Transaction comment",
-                    "example": "git comit"
-                  },
-                  "balance": {
-                    "type": "integer",
-                    "description": "User's balance",
-                    "example": "9999999"
-                  }
-                }
+              "_id": {
+                "type": "string",
+                "description": "Contact id",
+                "example": "61c707a8c104e48b7bd50918"
+              },
+              "name": {
+                "type": "string",
+                "description": "Contact name",
+                "example": "Test Test"
+              },
+              "email": {
+                "type": "string",
+                "description": "Contact email",
+                "format": "email"
+              },
+              "phone": {
+                "type": "string",
+                "description": "Contact phone",
+                "example": "+7773555-0000"
+              },
+              "favorite": {
+                "type": "boolean",
+                "description": "is Favorite Contact",
+                "example": "true/false"
+              },
+              "owner": {
+                "type": "string",
+                "description": "Contact owner",
+                "example": "61c707a8c104e48b7bd50918"
               }
             }
+          }
+        }
+      },
+      "UpdateContactResponse": {
+        "type": "object",
+        "properties": {
+          "contacts": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "Contact id",
+                "example": "61c707a8c104e48b7bd50918"
+              },
+              "name": {
+                "type": "string",
+                "description": "Contact name",
+                "example": "Test Test"
+              },
+              "email": {
+                "type": "string",
+                "description": "Contact email",
+                "format": "email"
+              },
+              "phone": {
+                "type": "string",
+                "description": "Contact phone",
+                "example": "+7773555-0000"
+              },
+              "favorite": {
+                "type": "boolean",
+                "description": "is Favorite Contact",
+                "example": "true/false"
+              },
+              "owner": {
+                "type": "string",
+                "description": "Contact owner",
+                "example": "61c707a8c104e48b7bd50918"
+              }
+            }
+          }
+        }
+      },
+      "UpdateContactStatusResponse": {
+        "type": "object",
+        "properties": {
+          "contacts": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "Contact id",
+                "example": "61c707a8c104e48b7bd50918"
+              },
+              "name": {
+                "type": "string",
+                "description": "Contact name",
+                "example": "Test Test"
+              },
+              "email": {
+                "type": "string",
+                "description": "Contact email",
+                "format": "email"
+              },
+              "phone": {
+                "type": "string",
+                "description": "Contact phone",
+                "example": "+7773555-0000"
+              },
+              "favorite": {
+                "type": "boolean",
+                "description": "is Favorite Contact",
+                "example": "true/false"
+              },
+              "owner": {
+                "type": "string",
+                "description": "Contact owner",
+                "example": "61c707a8c104e48b7bd50918"
+              }
+            }
+          }
+        }
+      },
+
+      "UpdateContactRequest": {
+        "required": ["name", "email", "phone"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Contact name",
+            "example": "Test Test"
+          },
+          "email": {
+            "type": "string",
+            "description": "Contact email",
+            "format": "email"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Contact phone",
+            "example": "+7773555-0000"
+          }
+        }
+      },
+      "UpdateContactStatusRequest": {
+        "required": ["favorite"],
+        "type": "object",
+        "properties": {
+          "favorite": {
+            "type": "boolean",
+            "description": "Contact status",
+            "example": "true/false"
+          }
+        }
+      },
+      "ContactByIdResponse": {
+        "type": "object",
+        "properties": {
+          "contact": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "Contact id",
+                "example": "61c707a8c104e48b7bd50918"
+              },
+              "name": {
+                "type": "string",
+                "description": "Contact name",
+                "example": "Test Test"
+              },
+              "email": {
+                "type": "string",
+                "description": "Contact email",
+                "format": "email"
+              },
+              "phone": {
+                "type": "string",
+                "description": "Contact phone",
+                "example": "+7773555-0000"
+              },
+              "favorite": {
+                "type": "boolean",
+                "description": "is Favorite Contact",
+                "example": "true/false"
+              },
+              "owner": {
+                "type": "string",
+                "description": "Contact owner",
+                "example": "61c707a8c104e48b7bd50918"
+              }
+            }
+          }
+        }
+      },
+      "ContactDeleteByIdResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "contact deleted",
+            "example": "contact deleted"
           }
         }
       },
