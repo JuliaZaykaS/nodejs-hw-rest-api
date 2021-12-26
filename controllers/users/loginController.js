@@ -4,7 +4,9 @@ const { HTTPCodes } = require('../../helpers')
 
 const loginController = async (req, res, next) => {
   // const token = await login(req.body)
-  const upUser = await login(req.body)
+  const user = await login(req.body)
+  console.log(user)
+  // const upUser = await login(req.body)
 
   // return res.status(HTTPCodes.OK).json({
   //   token,
@@ -15,10 +17,11 @@ const loginController = async (req, res, next) => {
 
   // })
   return res.status(HTTPCodes.OK).json({
-    token: upUser.token,
+    // token: upUser.token,
+    token: user.token,
     user: {
-      name: upUser.name,
-      email: upUser.email,
+      name: user.upUser.name,
+      email: user.upUser.email,
       subscription: 'starter'
     }
 

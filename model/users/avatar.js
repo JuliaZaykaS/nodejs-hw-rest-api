@@ -9,7 +9,7 @@ const avatar = async (user, file) => {
   const { path: tempPath, originalname } = file
   const { _id } = user
   // tempPath - это путь к файлу во временной папке
-
+console.log(file)
   if (!user) {
     throw new AuthorizationError('Not authorized')
   }

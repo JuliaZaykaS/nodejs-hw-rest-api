@@ -26,9 +26,10 @@ const login = async (body) => {
   }, process.env.JWT_SECRET)
 
   const upUser = await User.findByIdAndUpdate(user._id, { $set: { token } })
-  // console.log(upUser);
-  return upUser
+  console.log(upUser)
+  // return upUser
   // await User.findByIdAndUpdate(user._id, { $set: { token } })
+  return { upUser, token }
   // return token
 }
 
