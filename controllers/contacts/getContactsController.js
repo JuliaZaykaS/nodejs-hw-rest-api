@@ -5,6 +5,7 @@ const getContactsController = async (req, res, next) => {
   const { _id: owner } = req.user
 
   let { page = 1, limit = 20, favorite } = req.query
+  console.log('favorite', favorite)
 
   limit = limit > 20 ? 20 : limit
 

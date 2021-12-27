@@ -309,29 +309,28 @@
       }
     },
 
-    "/api/contacts/{page&limit&favorite}": {
+    "/api/contacts/?page&limit&favorite": {
       "get": {
         "tags": ["Contacts"],
         "summary": "User Contacts",
         "parameters": [
           {
-            "in": "path",
+            "in": "query",
             "name": "page",
             "description": "Page from Total Contacts",
-            "required": true,
             "type": "string"
           },
           {
-            "in": "path",
+            "in": "query",
             "name": "limit",
             "description": "Limit Contacts on page",
             "type": "string"
           },
           {
-            "in": "path",
+            "in": "query",
             "name": "favorite",
             "description": "Favorite Contacts",
-            "type": "string"
+            "type": "boolean"
           }
         ],
         "security": [{ "Bearer": [] }],
@@ -813,7 +812,7 @@
                     "favorite": {
                       "type": "boolean",
                       "description": "Favorite Contact",
-                      "example": "true/false"
+                      "format": "boolean"
                     },
                     "owner": {
                       "type": "string",
