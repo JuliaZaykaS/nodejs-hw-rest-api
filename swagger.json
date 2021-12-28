@@ -318,13 +318,13 @@
             "in": "query",
             "name": "page",
             "description": "Page from Total Contacts",
-            "type": "string"
+            "type": "integer"
           },
           {
             "in": "query",
             "name": "limit",
             "description": "Limit Contacts on page",
-            "type": "string"
+            "type": "integer"
           },
           {
             "in": "query",
@@ -409,7 +409,7 @@
         "security": [{ "Bearer": [] }],
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "required": true,
             "type": "string",
             "description": "contact id",
@@ -447,7 +447,7 @@
         "security": [{ "Bearer": [] }],
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "required": true,
             "type": "string",
             "description": "contact id",
@@ -485,7 +485,7 @@
         "summary": "Update contact by id",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "required": true,
             "type": "string",
             "description": "contact id",
@@ -537,7 +537,7 @@
         "summary": "Update contact status",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "required": true,
             "type": "string",
             "description": "contact id",
