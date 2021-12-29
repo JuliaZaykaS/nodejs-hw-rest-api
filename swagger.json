@@ -318,19 +318,22 @@
             "in": "query",
             "name": "page",
             "description": "Page from Total Contacts",
-            "type": "integer"
+            "type": "string"
           },
+
           {
             "in": "query",
             "name": "limit",
             "description": "Limit Contacts on page",
-            "type": "integer"
+
+            "type": "string"
           },
+
           {
             "in": "query",
             "name": "favorite",
             "description": "Favorite Contacts",
-            "type": "boolean"
+            "type": "string"
           }
         ],
         "security": [{ "Bearer": [] }],
