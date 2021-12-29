@@ -13,7 +13,7 @@
   "produces": ["application/json"],
   "servers": [
     {
-      "url": "http://localhost:5555"
+      "url": "https://backend-for-phonebook.herokuapp.com/"
     }
   ],
   "tags": [
