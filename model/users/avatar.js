@@ -56,32 +56,3 @@ console.log(file)
 }
 
 module.exports = avatar
-
-
-// "AvatarRequest": {
-//   "type": "object",
-//   "properties": {
-//     "file": {
-//       "type": "array",
-//       "items": {
-//         "type": "string",
-//         "format": "binary"
-//       }
-//     }
-//   }
-// },
-// "file":{
-
-//   "image/jpeg": {
-//     "schema": {
-//       "type": "string",
-//       "format": "binary"
-//     }
-//   },
-//   "image/png": {
-//     "schema": {
-//       "type": "string",
-//       "format": "binary"
-//     }
-//   }
-// }

@@ -27,10 +27,8 @@ const login = async (body) => {
 
   const upUser = await User.findByIdAndUpdate(user._id, { $set: { token } })
   console.log(upUser)
-  // return upUser
-  // await User.findByIdAndUpdate(user._id, { $set: { token } })
+
   return { upUser, token }
-  // return token
 }
 
 module.exports = login
