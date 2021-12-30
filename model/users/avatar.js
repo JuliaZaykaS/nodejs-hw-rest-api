@@ -9,7 +9,7 @@ const avatar = async (user, file) => {
   const { path: tempPath, originalname } = file
   const { _id } = user
   // tempPath - это путь к файлу во временной папке
-
+console.log(file)
   if (!user) {
     throw new AuthorizationError('Not authorized')
   }
@@ -56,3 +56,32 @@ const avatar = async (user, file) => {
 }
 
 module.exports = avatar
+
+
+// "AvatarRequest": {
+//   "type": "object",
+//   "properties": {
+//     "file": {
+//       "type": "array",
+//       "items": {
+//         "type": "string",
+//         "format": "binary"
+//       }
+//     }
+//   }
+// },
+// "file":{
+
+//   "image/jpeg": {
+//     "schema": {
+//       "type": "string",
+//       "format": "binary"
+//     }
+//   },
+//   "image/png": {
+//     "schema": {
+//       "type": "string",
+//       "format": "binary"
+//     }
+//   }
+// }

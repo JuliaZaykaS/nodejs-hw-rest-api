@@ -25,8 +25,12 @@ const login = async (body) => {
     createdAt: user.createdAt,
   }, process.env.JWT_SECRET)
 
-  await User.findByIdAndUpdate(user._id, { $set: { token } })
-  return token
+  const upUser = await User.findByIdAndUpdate(user._id, { $set: { token } })
+  console.log(upUser)
+  // return upUser
+  // await User.findByIdAndUpdate(user._id, { $set: { token } })
+  return { upUser, token }
+  // return token
 }
 
 module.exports = login
