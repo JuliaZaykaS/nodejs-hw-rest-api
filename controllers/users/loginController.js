@@ -10,7 +10,8 @@ const loginController = async (req, res, next) => {
     user: {
       name: user.upUser.name,
       email: user.upUser.email,
-      subscription: 'starter'
+      subscription: 'starter',
+      avatar: user.avatarURL
     }
 
   })

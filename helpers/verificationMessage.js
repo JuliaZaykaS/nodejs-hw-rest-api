@@ -19,7 +19,7 @@ const verificationMessage = async(email, verificationToken) => {
     from: 'marsi-anka55@mail.ru',
     subject: 'Регистрация на сайте',
     text: `Please, confirm your email address POST https://backend-for-phonebook.herokuapp.com/users//verify/${verificationToken}`,
-    html: `Please, <a href="https://backend-for-phonebook.herokuapp.com/users//verify/${verificationToken}">confirm</a> your email address`
+    html: `Please, <a href="https://backend-for-phonebook.herokuapp.com/users/verify/${verificationToken}">confirm</a> your email address`
   }
 
   transporter.sendMail(emailForSend)

@@ -674,6 +674,11 @@
                 "type": "string",
                 "description": "User's subscription",
                 "example": "starter/pro"
+              },
+              "avatar": {
+                "type": "string",
+                "description": "User's avatar",
+                "example": "http://host/avatars/6184355500127cfe738b8b4d/6184355500127cfe738b8b4d-f1539c1d698e1334f3c053fd8699f31e.jpg"
               }
             }
           }
@@ -764,6 +769,12 @@
                 "type": "string",
                 "description": "User's subscription",
                 "example": "starter/pro"
+
+              },
+              "avatar": {
+                "type": "string",
+                "description": "User's avatar",
+                "example": "http://host/avatars/6184355500127cfe738b8b4d/6184355500127cfe738b8b4d-f1539c1d698e1334f3c053fd8699f31e.jpg"
               }
             }
           }

@@ -7,7 +7,8 @@ const currentController = async (req, res, next) => {
   return res.status(HTTPCodes.OK).json({
     name: user.name,
     email: user.email,
-    subscription: user.subscription
+    subscription: user.subscription,
+    avatar: user.avatarURL,
   })
 }
 
