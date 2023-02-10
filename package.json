@@ -2,7 +2,7 @@
   "name": "template",
   "version": "0.0.0",
   "private": true,
-  "proxy": "https://backend-for-phonebook.herokuapp.com/",
+  "proxy": "nodejs-hw-rest-api.vercel.app",
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./bin/server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./bin/server.js",
