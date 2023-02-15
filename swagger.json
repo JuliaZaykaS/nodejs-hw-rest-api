@@ -13,7 +13,7 @@
   "produces": ["application/json"],
   "servers": [
     {
-      "url": "https://nodejs-hw-rest-api.vercel.app/"
+      "url": "backend-for-phonebook.up.railway.app"
     }
   ],
   "tags": [
