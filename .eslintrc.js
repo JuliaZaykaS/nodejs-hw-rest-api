@@ -5,12 +5,12 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: ['standard'],
+  extends: ["standard"],
   parserOptions: {
     ecmaVersion: 12,
   },
   rules: {
-    'comma-dangle': 'off',
-    'space-before-function-paren': 'off',
+    "comma-dangle": "on",
+    "space-before-function-paren": "off",
   },
-}
+};
