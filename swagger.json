@@ -13,7 +13,7 @@
   "produces": ["application/json"],
   "servers": [
     {
-      "url": "backend-for-phonebook.up.railway.app"
+      "url": "https://backendforphonebook-sys55.b4a.run/"
     }
   ],
   "tags": [

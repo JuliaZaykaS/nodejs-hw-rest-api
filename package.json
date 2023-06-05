@@ -2,7 +2,7 @@
   "name": "template",
   "version": "0.0.0",
   "private": true,
-  "proxy": "nodejs-hw-rest-api.vercel.app",
+  "proxy": "https://backendforphonebook-sys55.b4a.run/",
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./bin/server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./bin/server.js",
