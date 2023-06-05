@@ -1,21 +1,21 @@
-FROM node:8
+# Use an official Node.js runtime as the base image
+FROM node:14
 
-# Папка приложения
-ARG APP_DIR=app
-RUN mkdir -p ${APP_DIR}
-WORKDIR ${APP_DIR}
+# Set the working directory inside the container
+WORKDIR /usr/src/app
 
-# Установка зависимостей
+# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
-RUN npm install
-# Для использования в продакшне
-# RUN npm install --production
 
-# Копирование файлов проекта
+# Install the application dependencies
+RUN npm install
+
+# Copy the entire application directory to the working directory
 COPY . .
 
-# Уведомление о порте, который будет прослушивать работающее приложение
+# Expose the port your application will run on
 EXPOSE 8000
 
-# Запуск проекта
+# Set the entry point command to run your server
+# CMD ["node", "bin/server.js"]
 CMD ["npm", "start"]
