@@ -1,15 +1,21 @@
+FROM node:8
 
-# Use the official Node.js image as the base image
-FROM node:12
+# Папка приложения
+ARG APP_DIR=app
+RUN mkdir -p ${APP_DIR}
+WORKDIR ${APP_DIR}
 
-# Set the working directory in the container
-WORKDIR /bin
-
-# Copy the application files into the working directory
-COPY . /bin
-
-# Install the application dependencies
+# Установка зависимостей
+COPY package*.json ./
 RUN npm install
+# Для использования в продакшне
+# RUN npm install --production
 
-# Define the entry point for the container
+# Копирование файлов проекта
+COPY . .
+
+# Уведомление о порте, который будет прослушивать работающее приложение
+EXPOSE 8000
+
+# Запуск проекта
 CMD ["npm", "start"]
