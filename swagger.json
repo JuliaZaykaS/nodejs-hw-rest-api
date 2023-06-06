@@ -13,7 +13,7 @@
   "produces": ["application/json"],
   "servers": [
     {
-      "url": "https://backendforphonebook-sys55.b4a.run/"
+      "url": "https://backendforphonebook-sys55.b4a.run"
     }
   ],
   "tags": [
